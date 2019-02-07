@@ -104,7 +104,7 @@ copy_to_user(gaddr_t to_ptr, const void *src, size_t n)
   return 0;
 }
 
-DEFINE_SYSCALL(unimplemented)
+DEFINE_SYSCALL(unimplemented, uint64_t, _1, uint64_t, _2, uint64_t, _3, uint64_t, _4, uint64_t, _5, uint64_t, _6)
 {
   uint64_t rax;
 
@@ -135,7 +135,7 @@ char *sc_name_table[NR_SYSCALLS] = {
 };
 
 #define DEFINE_NOT_IMPLEMENTED_SYSCALL(name)      \
-  DEFINE_SYSCALL(name)                            \
+  DEFINE_SYSCALL(name, uint64_t, _1, uint64_t, _2, uint64_t, _3, uint64_t, _4, uint64_t, _5, uint64_t, _6) \
   {                                               \
     return -LINUX_ENOSYS;                         \
   }

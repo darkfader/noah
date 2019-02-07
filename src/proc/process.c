@@ -592,7 +592,8 @@ DEFINE_SYSCALL(sched_getaffinity, l_pid_t, pid, unsigned int, len, gaddr_t, user
   static const unsigned sizeof_cpumask_t = 32; /* FIXME */
   if (len < sizeof_cpumask_t)
     return -LINUX_EINVAL;
-  unsigned char buf[sizeof_cpumask_t] = {0};
+  unsigned char buf[sizeof_cpumask_t];
+  memset(buf, 0, sizeof(buf));
   buf[0] = 0x1;
   if (copy_to_user(user_mask_ptr, buf, sizeof buf))
     return -LINUX_EFAULT;
